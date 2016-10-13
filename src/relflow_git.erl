@@ -128,7 +128,7 @@ changed_modules_since(Rev) when is_list(Rev) ->
                     ["test" | _] ->
                         [];
 
-                    ["apps", AppName, "src" | _] ->
+                    ["apps", AppName, _ | _] ->
                         {AppName, Module, ModInfo};
 
                     ["src" | _] ->
@@ -166,5 +166,3 @@ gather_changed_modules([{AppName, Module, ModInfo} | Rest], Acc) ->
     gather_changed_modules(Rest, [{AppName, [{Module, ModInfo}]}|Acc]);
 gather_changed_modules([], Acc) ->
     Acc.
-
-
