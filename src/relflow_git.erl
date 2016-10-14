@@ -128,13 +128,15 @@ changed_modules_since(Rev) when is_list(Rev) ->
                     ["test" | _] ->
                         [];
 
-                    ["apps", AppName, _ | _] ->
+                    ["apps", AppName, "src" | _] ->
                         {AppName, Module, ModInfo};
 
                     ["src" | _] ->
                         %% we lookup the app name at the end, during gathering:
                         AppName = "$$single_app",
-                        {AppName, Module, ModInfo}
+                        {AppName, Module, ModInfo};
+                    _ ->
+                        []
                 end;
             _Else ->
                 io:format("git error: ~s\n",[Line]),
